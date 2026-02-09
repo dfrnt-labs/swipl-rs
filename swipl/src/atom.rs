@@ -116,9 +116,9 @@ impl Atom {
     }
 }
 
-impl ToString for Atom {
-    fn to_string(&self) -> String {
-        self.name()
+impl std::fmt::Display for Atom {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
