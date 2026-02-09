@@ -187,11 +187,7 @@ where
 
 term_getable! {
     (Atom, "atom", term) => {
-        match term.get_atom(|a| a.cloned()) {
-            Ok(r) => r,
-            // ignore this error - it'll be picked up again by the wrapper
-            Err(_) => None
-        }
+        term.get_atom(|a| a.cloned()).unwrap_or_default()
     }
 }
 
@@ -404,11 +400,7 @@ where
 
 term_getable! {
     (Atomable<'static>, "atom", term) => {
-        match get_atomable(term, |a|a.map(|a|a.owned())) {
-            Ok(r) => r,
-            // ignore error - it'll be picked up in the wrapper
-            Err(_) => None
-        }
+        get_atomable(term, |a|a.map(|a|a.owned())).unwrap_or_default()
     }
 }
 
